@@ -46,6 +46,16 @@ export default function Portfolio() {
 
   const visualProjects = [
   {
+    title: "BoraSelect",
+    description:
+      "Implementação das páginas internas com foco em performance e consistência visual. Projeto institucional desenvolvido pela Inffus.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://boraselect.com.br/",
+    image: "/images/boraselect.png",
+    partner: "Inffus",
+    role: "Programação das páginas internas",
+  },
+  {
     title: "TQ Tec Treinamentos",
     description:
       "Site institucional moderno e responsivo, com foco em usabilidade, SEO e divulgação de cursos EAD e in-company. Programado na agência Sites10.",
@@ -75,16 +85,6 @@ export default function Portfolio() {
     partner: "Inffus",
     role: "Programação das páginas internas",
   },
-  {
-    title: "BoraSelect",
-    description:
-      "Implementação das páginas internas com foco em performance e consistência visual. Projeto institucional desenvolvido pela Inffus.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://boraselect.com.br/",
-    image: "/images/boraselect.png",
-    partner: "Inffus",
-    role: "Programação das páginas internas",
-  },
 ]
 
 const technicalProjects = [
@@ -94,7 +94,7 @@ const technicalProjects = [
       "Integração da API do sistema imobiliário CVCRM ao site institucional da Porto Camargo, permitindo exibição dinâmica e automatizada de empreendimentos. Projeto realizado na Inffus.",
     tech: ["JavaScript", "API", "HTML", "CSS"],
     link: "https://portocamargo.com.br/",
-    image: "/images/portocamargo.jpg",
+    image: "/images/portocamargo.png",
     partner: "Inffus",
     role: "Integração da API do CVCRM",
   },
@@ -104,7 +104,7 @@ const technicalProjects = [
       "Contribuições técnicas no CMS da Inffus, incluindo gerador de anúncios com IA (ChatGPT) e sistema de rastreamento de UTMs, agora evoluído para um pacote NPM reutilizável.",
     tech: ["JavaScript", "Node.js", "OpenAI API", "NPM"],
     link: "https://app.autobusiness.com.br/",
-    image: "/images/autobusiness.jpg",
+    image: "/images/crm.png",
     partner: "Inffus",
     role: "Desenvolvimento de funcionalidades e pacote NPM",
   },
@@ -230,14 +230,11 @@ const technicalProjects = [
         <div className="max-w-6xl mx-auto">
           <div className="transition-all duration-1000">
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Projetos</h2>
-
             <ProjectSection title="Sites Desenvolvidos" projects={visualProjects} />
             <ProjectSection title="Funcionalidades Técnicas & Integrações" projects={technicalProjects} />
           </div>
         </div>
       </section>
-         
-
       <section id="experiencia" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-4xl mx-auto">
           <div className={`transition-all duration-1000`}>
@@ -251,16 +248,10 @@ const technicalProjects = [
                       <h3 className="text-xl font-semibold text-white mb-2">Estágio 1, empresa Sites10 (Março - Dezembro de 2024)</h3>
                       <p className="text-gray-300 leading-relaxed white-space-pre">
                         Atuei no desenvolvimento de páginas web responsivas e otimizadas para SEO, utilizando HTML, CSS e JavaScript no front-end e PHP no back-end. Minhas principais contribuições incluíram:<br/>
-
                         Integração de APIs externas, como a API de avaliações do Google, para agregar valor às aplicações e aprimorar a experiência do usuário.
-
                         Desenvolvimento de APIs internas eficientes, com foco em performance e consultas otimizadas ao banco de dados.
-
                         Aplicação de boas práticas de usabilidade, acessibilidade e design responsivo, garantindo uma navegação fluida em diferentes dispositivos.
-
                         Priorização da performance e escalabilidade, entregando soluções que atendem às necessidades técnicas e comerciais dos projetos.
-
-
                       </p>
                     </div>
                   </div>
@@ -289,15 +280,13 @@ const technicalProjects = [
 
       <section id="contato" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div
-            className={`transition-all duration-1000`}
-          >
+          <div className={`transition-all duration-1000`}>
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Contato</h2>
             <div className="text-center">
               <p className="text-xl text-gray-300 mb-12">Vamos trabalhar juntos? Entre em contato comigo!</p>
               <div className="flex justify-center space-x-8 mb-12">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Kuligowskilucas"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors group"
@@ -306,7 +295,7 @@ const technicalProjects = [
                   <span className="text-lg">GitHub</span>
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/lucas-kuligowski-504017260/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors group"
@@ -315,7 +304,7 @@ const technicalProjects = [
                   <span className="text-lg">LinkedIn</span>
                 </a>
                 <a
-                  href="mailto:lucas@email.com"
+                  href="mailto:lucaskuligowski@gmail.com"
                   className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors group"
                 >
                   <Mail className="w-8 h-8 group-hover:scale-110 transition-transform" />
@@ -327,11 +316,11 @@ const technicalProjects = [
         </div>
       </section>
 
-      <footer className="py-8 px-6 border-t border-gray-800">
+      {/* <footer className="py-8 px-6 border-t border-gray-800">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-gray-400">© 2024 Lucas. Desenvolvido com Next.js e Tailwind CSS.</p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   )
 }
