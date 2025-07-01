@@ -51,7 +51,7 @@ export default function Portfolio() {
       "Site institucional moderno e responsivo, com foco em usabilidade, SEO e divulgação de cursos EAD e in-company. Programado na agência Sites10.",
     tech: ["PHP", "JavaScript", "HTML", "CSS"],
     link: "https://www.tqtectreinamentos.com.br/",
-    image: "/images/tqtec.jpg",
+    image: "/images/tqtectreinamentos.png",
     partner: "Sites10",
     role: "Programação completa",
   },
@@ -61,7 +61,7 @@ export default function Portfolio() {
       "Site institucional voltado à engenharia industrial, com foco técnico, performance e clareza. Programado em parceria com a agência Sites10.",
     tech: ["PHP", "JavaScript", "HTML", "CSS"],
     link: "https://www.gdex.com.br/",
-    image: "/images/dex.jpg",
+    image: "/images/dex.png",
     partner: "Sites10",
     role: "Programação completa",
   },
@@ -71,7 +71,7 @@ export default function Portfolio() {
       "Desenvolvimento das páginas internas do site da Vestilo com foco em responsividade, clareza de estrutura e padronização visual. Projeto da Inffus.",
     tech: ["HTML", "CSS", "JavaScript", "PHP"],
     link: "https://site.vestilo.com.br/",
-    image: "/images/vestilo.jpg",
+    image: "/images/vestilo.png",
     partner: "Inffus",
     role: "Programação das páginas internas",
   },
@@ -81,7 +81,7 @@ export default function Portfolio() {
       "Implementação das páginas internas com foco em performance e consistência visual. Projeto institucional desenvolvido pela Inffus.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "https://boraselect.com.br/",
-    image: "/images/boraselect.jpg",
+    image: "/images/boraselect.png",
     partner: "Inffus",
     role: "Programação das páginas internas",
   },
@@ -135,9 +135,7 @@ const technicalProjects = [
 
       <section id="hero" className="min-h-screen flex items-center justify-center px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div
-            className={`transition-all duration-1000`}
-          >
+          <div className={`transition-all duration-1000`}>
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Olá, eu sou o <span className="text-purple-400">Lucas</span>
             </h1>
@@ -194,9 +192,7 @@ const technicalProjects = [
 
       <section id="tecnologias" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
-          <div
-            className={`transition-all duration-1000`}
-          >
+          <div className={`transition-all duration-1000`}>
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Tecnologias</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {Object.entries(techStacks).map(([category, techs], index) => (
@@ -244,9 +240,7 @@ const technicalProjects = [
 
       <section id="experiencia" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-4xl mx-auto">
-          <div
-            className={`transition-all duration-1000`}
-          >
+          <div className={`transition-all duration-1000`}>
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Experiência</h2>
             <div className="space-y-8">
               <Card className="bg-gray-800/50 border-gray-700">

@@ -20,7 +20,7 @@ interface ProjectCardProps {
 export function ProjectCard({ title, description, tech, link, image, partner, role}: ProjectCardProps) {
   return (
     <Card className="bg-gray-800/50 border border-gray-700 hover:border-purple-400 transition-all duration-300 overflow-hidden">
-      <div className="w-full h-64 bg-gray-700">
+      <div className="w-full h-[548px] bg-gray-700">
         <img src={image || "/placeholder.jpg"} alt={`Imagem do projeto ${title}`} className="w-full h-full object-cover" />
       </div>
       <CardContent className="p-6 flex flex-col gap-4">
