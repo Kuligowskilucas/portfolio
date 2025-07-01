@@ -4,12 +4,11 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Settings, ChevronDown } from "lucide-react"
-import Link from "next/link"
+import { Github, Linkedin, Mail, Code2, Database, Settings, ChevronDown } from "lucide-react"
 import { ProjectSection } from "@/components/ui/ProjectSection"
 
 export default function Portfolio() {
-  const [isVisible, setIsVisible] = useState({})
+  const [, setIsVisible] = useState({})
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -195,7 +194,7 @@ const technicalProjects = [
           <div className={`transition-all duration-1000`}>
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Tecnologias</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {Object.entries(techStacks).map(([category, techs], index) => (
+              {Object.entries(techStacks).map(([category, techs]) => (
                 <Card
                   key={category}
                   className="bg-gray-800/50 border-gray-700 hover:border-purple-400 transition-all duration-300"
