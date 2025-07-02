@@ -281,9 +281,9 @@ const technicalProjects = [
         <div className="max-w-4xl mx-auto">
           <div className={`transition-all duration-1000`}>
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Contato</h2>
-            <div className="text-center">
+            <div className="text-center w-full flex items-center flex-col">
               <p className="text-xl text-gray-300 mb-12">Vamos trabalhar juntos? Entre em contato comigo!</p>
-              <div className="flex justify-center space-x-8 mb-12">
+              <div className="flex md:flex-row flex-col justify-center space-x-8 mb-12">
                 <a
                   href="https://github.com/Kuligowskilucas"
                   target="_blank"
@@ -314,12 +314,6 @@ const technicalProjects = [
           </div>
         </div>
       </section>
-
-      {/* <footer className="py-8 px-6 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-400">© 2024 Lucas. Desenvolvido com Next.js e Tailwind CSS.</p>
-        </div>
-      </footer> */}
     </div>
   )
 }

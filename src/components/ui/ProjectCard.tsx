@@ -20,9 +20,14 @@ interface ProjectCardProps {
 export function ProjectCard({ title, description, tech, link, image, partner, role}: ProjectCardProps) {
   return (
     <Card className="bg-gray-800/50 border border-gray-700 hover:border-purple-400 transition-all duration-300 overflow-hidden">
-      <div className="w-full h-[548px] bg-gray-700">
-        <img src={image || "/placeholder.jpg"} alt={`Imagem do projeto ${title}`} className="w-full h-full object-cover" />
-      </div>
+      <div className="w-full aspect-[9/4] sm:aspect-video bg-gray-700 flex items-center justify-center">
+  <img
+    src={image || "/placeholder.jpg"}
+    alt={`Imagem do projeto ${title}`}
+    className="w-full h-full object-contain sm:object-cover"
+  />
+</div>
+
       <CardContent className="p-6 flex flex-col gap-4">
         <div>
           <h3 className="text-2xl font-bold text-white">{title}</h3>
