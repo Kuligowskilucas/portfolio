@@ -48,7 +48,7 @@ export default function Portfolio() {
     title: "BoraSelect",
     description:
       "Implementação das páginas internas com foco em performance e consistência visual. Projeto institucional desenvolvido pela Inffus.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    tech: ["Next.js", "Tailwind CSS"],
     link: "https://boraselect.com.br/",
     image: "/images/boraselect.png",
     partner: "Inffus",
@@ -78,7 +78,7 @@ export default function Portfolio() {
     title: "Vestilo Uniformes",
     description:
       "Desenvolvimento das páginas internas do site da Vestilo com foco em responsividade, clareza de estrutura e padronização visual. Projeto da Inffus.",
-    tech: ["HTML", "CSS", "JavaScript", "PHP"],
+    tech: ["Next.js", "Tailwind CSS"],
     link: "https://site.vestilo.com.br/",
     image: "/images/vestilo.png",
     partner: "Inffus",
