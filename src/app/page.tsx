@@ -55,6 +55,59 @@ export default function Portfolio() {
     "Ferramentas": <Settings className="w-6 h-6 text-purple-400 mr-2" />,
   }
 
+  const technicalProjects = [
+    {
+      title: "Migração Laravel 9 → 12 (Horsch)",
+      description:
+        "Migração completa do sistema Horsch de Laravel 9 para 12 na Tuxon Soluções Web. Refatoração de breaking changes em autenticação, Eloquent e middleware, atualização de dependências e resolução de incompatibilidades.",
+      tech: ["Laravel", "PHP", "Docker", "MySQL"],
+      link: "",
+      image: "/images/horsch.png",
+      partner: "Tuxon Soluções Web",
+      role: "Migração e refatoração completa",
+    },
+    {
+      title: "Módulo de Assentamentos — Sistema de Chamados",
+      description:
+        "Desenvolvimento completo do módulo de assentamentos do sistema de chamados interno da Tuxon. Modelagem de banco de dados, CRUD completo, vínculo com chamados, histórico de alterações e interface administrativa.",
+      tech: ["Laravel", "Filament", "MySQL", "PHP"],
+      link: "",
+      image: "/images/chamados.png",
+      partner: "Tuxon Soluções Web",
+      role: "Desenvolvimento completo do módulo",
+    },
+    {
+      title: "Painéis Administrativos (Filament & Orchid)",
+      description:
+        "Desenvolvimento de painéis administrativos na Tuxon para gestão de clientes, com fluxos CRUD customizados, relatórios internos e containerização dos ambientes com Docker.",
+      tech: ["Laravel", "Filament", "Orchid", "Docker"],
+      link: "",
+      image: "/images/painel.png",
+      partner: "Tuxon Soluções Web",
+      role: "Desenvolvimento e manutenção",
+    },
+    {
+      title: "AutoBusiness CMS",
+      description:
+        "Contribuições técnicas no CMS da Inffus, incluindo gerador de anúncios com IA (ChatGPT) e sistema de rastreamento de UTMs com validação automática — redução de marcações inválidas de 30% para menos de 2%.",
+      tech: ["JavaScript", "Node.js", "OpenAI API", "NPM"],
+      link: "https://app.autobusiness.com.br/",
+      image: "/images/crm.png",
+      partner: "Inffus",
+      role: "Desenvolvimento de funcionalidades e pacote NPM",
+    },
+    {
+      title: "Porto Camargo",
+      description:
+        "Integração da API do sistema imobiliário CVCRM ao site institucional da Porto Camargo, permitindo exibição dinâmica e automatizada de empreendimentos. Projeto realizado na Inffus.",
+      tech: ["JavaScript", "API", "HTML", "CSS"],
+      link: "https://portocamargo.com.br/",
+      image: "/images/portocamargo.png",
+      partner: "Inffus",
+      role: "Integração da API do CVCRM",
+    },
+  ]
+
   const visualProjects = [
     {
       title: "BoraSelect",
@@ -98,49 +151,6 @@ export default function Portfolio() {
     },
   ]
 
-  const technicalProjects = [
-    {
-      title: "Migração Laravel 9 → 12 (Horsch)",
-      description:
-        "Migração completa do sistema Horsch de Laravel 9 para 12 na Tuxon Soluções Web. Refatoração de breaking changes em autenticação, Eloquent e middleware, atualização de dependências e resolução de incompatibilidades.",
-      tech: ["Laravel", "PHP", "Docker", "MySQL"],
-      link: "",
-      image: "/images/horsch.png",
-      partner: "Tuxon Soluções Web",
-      role: "Migração e refatoração completa",
-    },
-    {
-      title: "Painéis Administrativos (Filament & Orchid)",
-      description:
-        "Desenvolvimento de painéis administrativos na Tuxon para gestão de clientes, com fluxos CRUD customizados, relatórios internos e containerização dos ambientes com Docker.",
-      tech: ["Laravel", "Filament", "Orchid", "Docker"],
-      link: "",
-      image: "/images/painel.png",
-      partner: "Tuxon Soluções Web",
-      role: "Desenvolvimento e manutenção",
-    },
-    {
-      title: "Porto Camargo",
-      description:
-        "Integração da API do sistema imobiliário CVCRM ao site institucional da Porto Camargo, permitindo exibição dinâmica e automatizada de empreendimentos. Projeto realizado na Inffus.",
-      tech: ["JavaScript", "API", "HTML", "CSS"],
-      link: "https://portocamargo.com.br/",
-      image: "/images/portocamargo.png",
-      partner: "Inffus",
-      role: "Integração da API do CVCRM",
-    },
-    {
-      title: "AutoBusiness CMS",
-      description:
-        "Contribuições técnicas no CMS da Inffus, incluindo gerador de anúncios com IA (ChatGPT) e sistema de rastreamento de UTMs com validação automática — redução de marcações inválidas de 30% para menos de 2%.",
-      tech: ["JavaScript", "Node.js", "OpenAI API", "NPM"],
-      link: "https://app.autobusiness.com.br/",
-      image: "/images/crm.png",
-      partner: "Inffus",
-      role: "Desenvolvimento de funcionalidades e pacote NPM",
-    },
-  ]
-
   const experiences = [
     {
       company: "Tuxon Soluções Web",
@@ -148,8 +158,9 @@ export default function Portfolio() {
       period: "Setembro 2025 – Abril 2026",
       highlights: [
         "Conduziu migração do sistema Horsch de Laravel 9 para 12, resolvendo breaking changes em autenticação, Eloquent e middleware.",
+        "Desenvolveu do zero o módulo de assentamentos do sistema de chamados interno — modelagem de banco, CRUD completo, vínculo com chamados, histórico de alterações e interface administrativa (Laravel/Filament).",
         "Construiu painéis administrativos com Filament e Orchid — gestão de clientes, fluxos CRUD customizados e relatórios internos.",
-        "Padronizou ambientes de desenvolvimento e deploy com Docker, eliminando inconsistências entre máquinas da equipe.",
+        "Padronizou ambientes de desenvolvimento e deploy com Docker.",
       ],
     },
     {
@@ -158,9 +169,9 @@ export default function Portfolio() {
       period: "Dezembro 2024 – Agosto 2025",
       description: "10 sites institucionais — 80 mil visitas/mês",
       highlights: [
+        "Criou gerenciador de UTMs com validação automática, derrubando marcações inválidas de 30% para menos de 2%.",
         "Migrou propriedades de marketing para Next.js (SSR/SSG) com otimização de imagens, reduzindo TTFB em 35% e INP para 180 ms.",
         "Evoluiu APIs internas (TypeScript/Laravel), melhorando consistência de contratos e reutilização entre projetos.",
-        "Criou gerenciador de UTMs com validação automática, derrubando marcações inválidas de 30% para menos de 2%.",
       ],
     },
     {
@@ -196,7 +207,6 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* Hero */}
       <section id="hero" className="min-h-screen flex items-center justify-center px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="transition-all duration-1000">
@@ -229,7 +239,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Sobre */}
       <section id="sobre" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="transition-all duration-1000">
@@ -244,9 +253,9 @@ export default function Portfolio() {
               <p>
                 Já trabalhei em três empresas, passando por dezenas de sites institucionais, migrações de sistemas
                 legados (Laravel 9 → 12), painéis administrativos com
-                <span className="text-purple-400"> Filament e Orchid</span>, integrações de APIs externas
-                e containerização com <span className="text-purple-400">Docker</span>. Transito
-                confortavelmente entre front e back-end.
+                <span className="text-purple-400"> Filament e Orchid</span>, módulos completos de sistemas internos,
+                integrações de APIs externas e containerização com <span className="text-purple-400">Docker</span>.
+                Transito confortavelmente entre front e back-end.
               </p>
               <p>
                 Atualmente cursando Análise e Desenvolvimento de Sistemas na PUC Paraná, com formação técnica
@@ -257,7 +266,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Tecnologias */}
       <section id="tecnologias" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
           <div className="transition-all duration-1000">
@@ -292,18 +300,16 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projetos */}
       <section id="projetos" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="transition-all duration-1000">
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Projetos</h2>
-            <ProjectSection title="Sites Desenvolvidos" projects={visualProjects} />
             <ProjectSection title="Funcionalidades Técnicas & Integrações" projects={technicalProjects} />
+            <ProjectSection title="Sites Desenvolvidos" projects={visualProjects} />
           </div>
         </div>
       </section>
 
-      {/* Experiência */}
       <section id="experiencia" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-4xl mx-auto">
           <div className="transition-all duration-1000">
@@ -343,7 +349,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contato */}
       <section id="contato" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="transition-all duration-1000">
