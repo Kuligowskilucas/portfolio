@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Github, Linkedin, Mail, Code2, Database, Settings, ChevronDown } from "lucide-react"
+import { Github, Linkedin, Mail, Code2, Database, Settings, ChevronDown, Server, BarChart3 } from "lucide-react"
 import { ProjectSection } from "@/components/ui/ProjectSection"
 
 export default function Portfolio() {
@@ -38,78 +38,142 @@ export default function Portfolio() {
   }
 
   const techStacks = {
-    "Front-end": ["HTML", "CSS", "JavaScript", "React", "Next.js", "TypeScript", "Tailwind CSS"],
-    "Back-end": ["PHP", "Laravel"],
-    Ferramentas: ["Git", "GitHub", "CMS", "SaaS"],
+    "Front-end": ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS", "JavaScript", "SSR/SSG"],
+    "Back-end": ["Laravel", "PHP", "Filament", "Orchid", "REST API", "SOAP", "Redis", "JWT/OAuth2"],
+    "Bancos de Dados": ["MySQL", "SQLite"],
+    "SEO & Analytics": ["GA4", "Google Search Console", "Lighthouse", "Screaming Frog", "schema.org"],
+    "DevOps & Testes": ["Docker", "GitHub Actions", "Jest/RTL", "PHPUnit/Pest", "Playwright"],
+    "Ferramentas": ["Git", "GitHub", "npm", "Vercel", "Postman/Insomnia"],
+  }
+
+  const techIcons: Record<string, React.ReactNode> = {
+    "Front-end": <Code2 className="w-6 h-6 text-purple-400 mr-2" />,
+    "Back-end": <Server className="w-6 h-6 text-purple-400 mr-2" />,
+    "Bancos de Dados": <Database className="w-6 h-6 text-purple-400 mr-2" />,
+    "SEO & Analytics": <BarChart3 className="w-6 h-6 text-purple-400 mr-2" />,
+    "DevOps & Testes": <Settings className="w-6 h-6 text-purple-400 mr-2" />,
+    "Ferramentas": <Settings className="w-6 h-6 text-purple-400 mr-2" />,
   }
 
   const visualProjects = [
-  {
-    title: "BoraSelect",
-    description:
-      "Implementação das páginas internas com foco em performance e consistência visual. Projeto institucional desenvolvido pela Inffus.",
-    tech: ["Next.js", "Tailwind CSS"],
-    link: "https://boraselect.com.br/",
-    image: "/images/boraselect.png",
-    partner: "Inffus",
-    role: "Programação das páginas internas",
-  },
-  {
-    title: "TQ Tec Treinamentos",
-    description:
-      "Site institucional moderno e responsivo, com foco em usabilidade, SEO e divulgação de cursos EAD e in-company. Programado na agência Sites10.",
-    tech: ["PHP", "JavaScript", "HTML", "CSS"],
-    link: "https://www.tqtectreinamentos.com.br/",
-    image: "/images/tqtectreinamentos.png",
-    partner: "Sites10",
-    role: "Programação completa",
-  },
-  {
-    title: "DEX Engenharia",
-    description:
-      "Site institucional voltado à engenharia industrial, com foco técnico, performance e clareza. Programado em parceria com a agência Sites10.",
-    tech: ["PHP", "JavaScript", "HTML", "CSS"],
-    link: "https://www.gdex.com.br/",
-    image: "/images/dex.png",
-    partner: "Sites10",
-    role: "Programação completa",
-  },
-  {
-    title: "Vestilo Uniformes",
-    description:
-      "Desenvolvimento das páginas internas do site da Vestilo com foco em responsividade, clareza de estrutura e padronização visual. Projeto da Inffus.",
-    tech: ["Next.js", "Tailwind CSS"],
-    link: "https://site.vestilo.com.br/",
-    image: "/images/vestilo.png",
-    partner: "Inffus",
-    role: "Programação das páginas internas",
-  },
-]
+    {
+      title: "BoraSelect",
+      description:
+        "Implementação das páginas internas com foco em performance e consistência visual. Projeto institucional desenvolvido pela Inffus.",
+      tech: ["Next.js", "Tailwind CSS"],
+      link: "https://boraselect.com.br/",
+      image: "/images/boraselect.png",
+      partner: "Inffus",
+      role: "Programação das páginas internas",
+    },
+    {
+      title: "TQ Tec Treinamentos",
+      description:
+        "Site institucional moderno e responsivo, com foco em usabilidade, SEO e divulgação de cursos EAD e in-company. Programado na agência Sites10.",
+      tech: ["PHP", "JavaScript", "HTML", "CSS"],
+      link: "https://www.tqtectreinamentos.com.br/",
+      image: "/images/tqtectreinamentos.png",
+      partner: "Sites10",
+      role: "Programação completa",
+    },
+    {
+      title: "DEX Engenharia",
+      description:
+        "Site institucional voltado à engenharia industrial, com foco técnico, performance e clareza. Programado em parceria com a agência Sites10.",
+      tech: ["PHP", "JavaScript", "HTML", "CSS"],
+      link: "https://www.gdex.com.br/",
+      image: "/images/dex.png",
+      partner: "Sites10",
+      role: "Programação completa",
+    },
+    {
+      title: "Vestilo Uniformes",
+      description:
+        "Desenvolvimento das páginas internas do site da Vestilo com foco em responsividade, clareza de estrutura e padronização visual. Projeto da Inffus.",
+      tech: ["Next.js", "Tailwind CSS"],
+      link: "https://site.vestilo.com.br/",
+      image: "/images/vestilo.png",
+      partner: "Inffus",
+      role: "Programação das páginas internas",
+    },
+  ]
 
-const technicalProjects = [
-  {
-    title: "Porto Camargo",
-    description:
-      "Integração da API do sistema imobiliário CVCRM ao site institucional da Porto Camargo, permitindo exibição dinâmica e automatizada de empreendimentos. Projeto realizado na Inffus.",
-    tech: ["JavaScript", "API", "HTML", "CSS"],
-    link: "https://portocamargo.com.br/",
-    image: "/images/portocamargo.png",
-    partner: "Inffus",
-    role: "Integração da API do CVCRM",
-  },
-  {
-    title: "AutoBusiness CMS",
-    description:
-      "Contribuições técnicas no CMS da Inffus, incluindo gerador de anúncios com IA (ChatGPT) e sistema de rastreamento de UTMs, agora evoluído para um pacote NPM reutilizável.",
-    tech: ["JavaScript", "Node.js", "OpenAI API", "NPM"],
-    link: "https://app.autobusiness.com.br/",
-    image: "/images/crm.png",
-    partner: "Inffus",
-    role: "Desenvolvimento de funcionalidades e pacote NPM",
-  },
-]
+  const technicalProjects = [
+    {
+      title: "Migração Laravel 9 → 12 (Horsch)",
+      description:
+        "Migração completa do sistema Horsch de Laravel 9 para 12 na Tuxon Soluções Web. Refatoração de breaking changes em autenticação, Eloquent e middleware, atualização de dependências e resolução de incompatibilidades.",
+      tech: ["Laravel", "PHP", "Docker", "MySQL"],
+      link: "",
+      image: "/images/horsch.png",
+      partner: "Tuxon Soluções Web",
+      role: "Migração e refatoração completa",
+    },
+    {
+      title: "Painéis Administrativos (Filament & Orchid)",
+      description:
+        "Desenvolvimento de painéis administrativos na Tuxon para gestão de clientes, com fluxos CRUD customizados, relatórios internos e containerização dos ambientes com Docker.",
+      tech: ["Laravel", "Filament", "Orchid", "Docker"],
+      link: "",
+      image: "/images/painel.png",
+      partner: "Tuxon Soluções Web",
+      role: "Desenvolvimento e manutenção",
+    },
+    {
+      title: "Porto Camargo",
+      description:
+        "Integração da API do sistema imobiliário CVCRM ao site institucional da Porto Camargo, permitindo exibição dinâmica e automatizada de empreendimentos. Projeto realizado na Inffus.",
+      tech: ["JavaScript", "API", "HTML", "CSS"],
+      link: "https://portocamargo.com.br/",
+      image: "/images/portocamargo.png",
+      partner: "Inffus",
+      role: "Integração da API do CVCRM",
+    },
+    {
+      title: "AutoBusiness CMS",
+      description:
+        "Contribuições técnicas no CMS da Inffus, incluindo gerador de anúncios com IA (ChatGPT) e sistema de rastreamento de UTMs com validação automática — redução de marcações inválidas de 30% para menos de 2%.",
+      tech: ["JavaScript", "Node.js", "OpenAI API", "NPM"],
+      link: "https://app.autobusiness.com.br/",
+      image: "/images/crm.png",
+      partner: "Inffus",
+      role: "Desenvolvimento de funcionalidades e pacote NPM",
+    },
+  ]
 
-
+  const experiences = [
+    {
+      company: "Tuxon Soluções Web",
+      role: "Desenvolvedor Web",
+      period: "Setembro 2025 – Abril 2026",
+      highlights: [
+        "Conduziu migração do sistema Horsch de Laravel 9 para 12, resolvendo breaking changes em autenticação, Eloquent e middleware.",
+        "Construiu painéis administrativos com Filament e Orchid — gestão de clientes, fluxos CRUD customizados e relatórios internos.",
+        "Padronizou ambientes de desenvolvimento e deploy com Docker, eliminando inconsistências entre máquinas da equipe.",
+      ],
+    },
+    {
+      company: "Inffus",
+      role: "Desenvolvedor Web",
+      period: "Dezembro 2024 – Agosto 2025",
+      description: "10 sites institucionais — 80 mil visitas/mês",
+      highlights: [
+        "Migrou propriedades de marketing para Next.js (SSR/SSG) com otimização de imagens, reduzindo TTFB em 35% e INP para 180 ms.",
+        "Evoluiu APIs internas (TypeScript/Laravel), melhorando consistência de contratos e reutilização entre projetos.",
+        "Criou gerenciador de UTMs com validação automática, derrubando marcações inválidas de 30% para menos de 2%.",
+      ],
+    },
+    {
+      company: "Sites 10",
+      role: "Desenvolvedor Web",
+      period: "Março 2024 – Dezembro 2024",
+      description: "25 sites institucionais — 150 mil visitas/mês",
+      highlights: [
+        "Entregou sites responsivos com SEO sólido (schema, sitemaps, Core Web Vitals), gerando +40% de tráfego orgânico.",
+        "Reduziu tempo de carregamento em até 50% com lazy-loading, otimização de imagens/CDN e redução de payload.",
+      ],
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-black text-white font-['Montserrat']">
@@ -132,15 +196,16 @@ const technicalProjects = [
         </div>
       </nav>
 
+      {/* Hero */}
       <section id="hero" className="min-h-screen flex items-center justify-center px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className={`transition-all duration-1000`}>
+          <div className="transition-all duration-1000">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Olá, eu sou o <span className="text-purple-400">Lucas</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl font-light text-gray-300 mb-8">Desenvolvedor Front-End</h2>
+            <h2 className="text-2xl md:text-3xl font-light text-gray-300 mb-8">Desenvolvedor Web</h2>
             <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-              Crio interfaces modernas com foco em performance e experiência.
+              Interfaces performáticas, APIs robustas e SEO que gera resultado. Next.js, Laravel e TypeScript.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -164,36 +229,40 @@ const technicalProjects = [
         </div>
       </section>
 
+      {/* Sobre */}
       <section id="sobre" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className={`transition-all duration-1000`}>
+          <div className="transition-all duration-1000">
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Sobre Mim</h2>
             <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
               <p>
-                Sou um desenvolvedor front-end em formação, com experiência prática utilizando
-                <span className="text-purple-400"> Next.js, TypeScript, PHP e Laravel</span>. Minha paixão está em criar
-                interfaces que não apenas impressionam visualmente, mas também oferecem uma experiência excepcional ao
-                usuário.
+                Sou desenvolvedor web com 2 anos de experiência construindo aplicações com
+                <span className="text-purple-400"> Next.js, React, TypeScript e Laravel</span>. Meu foco é
+                entregar interfaces rápidas, APIs consistentes e fundações sólidas de SEO que geram resultado
+                mensurável — como +40% de tráfego orgânico e redução de 50% no tempo de carregamento.
               </p>
               <p>
-                Durante minha jornada, tive a oportunidade de trabalhar como estagiário em duas empresas, onde pude
-                aplicar meus conhecimentos na criação e manutenção de sites reais, desenvolvimento de APIs, sistemas
-                CMS, plataformas SaaS e suporte ao cliente.
+                Já trabalhei em três empresas, passando por dezenas de sites institucionais, migrações de sistemas
+                legados (Laravel 9 → 12), painéis administrativos com
+                <span className="text-purple-400"> Filament e Orchid</span>, integrações de APIs externas
+                e containerização com <span className="text-purple-400">Docker</span>. Transito
+                confortavelmente entre front e back-end.
               </p>
               <p>
-                Estou sempre em busca de novos desafios e oportunidades para crescer como desenvolvedor, mantendo-me
-                atualizado com as mais recentes tecnologias e melhores práticas do mercado.
+                Atualmente cursando Análise e Desenvolvimento de Sistemas na PUC Paraná, com formação técnica
+                em Informática pelo IFPR. Sempre buscando desafios que me forcem a crescer.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Tecnologias */}
       <section id="tecnologias" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
-          <div className={`transition-all duration-1000`}>
+          <div className="transition-all duration-1000">
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Tecnologias</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6">
               {Object.entries(techStacks).map(([category, techs]) => (
                 <Card
                   key={category}
@@ -201,9 +270,7 @@ const technicalProjects = [
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
-                      {category === "Front-end" && <Code2 className="w-6 h-6 text-purple-400 mr-2" />}
-                      {category === "Back-end" && <Database className="w-6 h-6 text-purple-400 mr-2" />}
-                      {category === "Ferramentas" && <Settings className="w-6 h-6 text-purple-400 mr-2" />}
+                      {techIcons[category]}
                       <h3 className="text-xl font-semibold text-white">{category}</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -225,6 +292,7 @@ const technicalProjects = [
         </div>
       </section>
 
+      {/* Projetos */}
       <section id="projetos" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="transition-all duration-1000">
@@ -234,52 +302,51 @@ const technicalProjects = [
           </div>
         </div>
       </section>
+
+      {/* Experiência */}
       <section id="experiencia" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-4xl mx-auto">
-          <div className={`transition-all duration-1000`}>
+          <div className="transition-all duration-1000">
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Experiência</h2>
             <div className="space-y-8">
-              <Card className="bg-gray-800/50 border-gray-700">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-3 h-3 bg-purple-400 rounded-full mt-2"></div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-2">Estágio 1, empresa Sites10 (Março - Dezembro de 2024)</h3>
-                      <p className="text-gray-300 leading-relaxed white-space-pre">
-                        Atuei no desenvolvimento de páginas web responsivas e otimizadas para SEO, utilizando HTML, CSS e JavaScript no front-end e PHP no back-end. Minhas principais contribuições incluíram:<br/>
-                        Integração de APIs externas, como a API de avaliações do Google, para agregar valor às aplicações e aprimorar a experiência do usuário.
-                        Desenvolvimento de APIs internas eficientes, com foco em performance e consultas otimizadas ao banco de dados.
-                        Aplicação de boas práticas de usabilidade, acessibilidade e design responsivo, garantindo uma navegação fluida em diferentes dispositivos.
-                        Priorização da performance e escalabilidade, entregando soluções que atendem às necessidades técnicas e comerciais dos projetos.
-                      </p>
+              {experiences.map((exp) => (
+                <Card key={exp.company} className="bg-gray-800/50 border-gray-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-full">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                          <h3 className="text-xl font-semibold text-white">
+                            {exp.company}
+                          </h3>
+                          <span className="text-sm text-purple-400 font-medium">{exp.period}</span>
+                        </div>
+                        <p className="text-gray-400 text-sm mb-3">
+                          {exp.role}
+                          {exp.description && <span> • {exp.description}</span>}
+                        </p>
+                        <ul className="space-y-2">
+                          {exp.highlights.map((highlight, i) => (
+                            <li key={i} className="text-gray-300 leading-relaxed flex items-start">
+                              <span className="text-purple-400 mr-2 mt-1 flex-shrink-0">▸</span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gray-800/50 border-gray-700">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-3 h-3 bg-purple-400 rounded-full mt-2"></div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-2">Estágio 2, empresa Inffus (Dezembro de 2024 - atual)</h3>
-                      <p className="text-gray-300 leading-relaxed">
-                        Criação de páginas internas, manutenção de APIs, suporte ao cliente e melhorias técnicas.
-                        Expandindo conhecimentos em desenvolvimento full-stack e aprimorando habilidades de comunicação
-                        com clientes e resolução de problemas complexos.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
+      {/* Contato */}
       <section id="contato" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className={`transition-all duration-1000`}>
+          <div className="transition-all duration-1000">
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Contato</h2>
             <div className="text-center w-full flex items-center flex-col">
               <p className="text-xl text-gray-300 mb-12">Vamos trabalhar juntos? Entre em contato comigo!</p>
