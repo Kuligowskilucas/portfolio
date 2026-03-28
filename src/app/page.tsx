@@ -199,7 +199,7 @@ export default function Portfolio() {
                   onClick={() => scrollToSection(item)}
                   className="text-gray-300 hover:text-purple-400 transition-colors capitalize"
                 >
-                  {item === "experiencia" ? "Experiência" : item}
+                  {{"sobre": "Sobre", "tecnologias": "Tecnologias", "projetos": "Projetos", "experiencia": "Experiência", "contato": "Contato"}[item]}
                 </button>
               ))}
             </div>

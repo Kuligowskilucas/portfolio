@@ -3,7 +3,7 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -17,16 +17,16 @@ interface ProjectCardProps {
   role?: string
 }
 
-export function ProjectCard({ title, description, tech, link, image, partner, role}: ProjectCardProps) {
+export function ProjectCard({ title, description, tech, link, image, partner, role }: ProjectCardProps) {
   return (
     <Card className="bg-gray-800/50 border border-gray-700 hover:border-purple-400 transition-all duration-300 overflow-hidden">
       <div className="w-full aspect-[9/4] sm:aspect-video bg-gray-700 flex items-center justify-center">
-  <img
-    src={image || "/placeholder.jpg"}
-    alt={`Imagem do projeto ${title}`}
-    className="w-full h-full object-contain sm:object-cover"
-  />
-</div>
+        <img
+          src={image || "/placeholder.jpg"}
+          alt={`Imagem do projeto ${title}`}
+          className="w-full h-full object-contain sm:object-cover"
+        />
+      </div>
 
       <CardContent className="p-6 flex flex-col gap-4">
         <div>
@@ -43,12 +43,19 @@ export function ProjectCard({ title, description, tech, link, image, partner, ro
           ))}
         </div>
         <div>
-          <Link href={link} target="_blank">
-            <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white rounded-full mt-2">
-              <ExternalLink className="w-4 h-4 mr-2" />
-              Ver Online
-            </Button>
-          </Link>
+          {link ? (
+            <Link href={link} target="_blank">
+              <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white rounded-full mt-2">
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Ver Online
+              </Button>
+            </Link>
+          ) : (
+            <span className="inline-flex items-center text-sm text-gray-500 mt-2">
+              <Lock className="w-4 h-4 mr-2" />
+              Projeto interno — acesso restrito
+            </span>
+          )}
         </div>
       </CardContent>
     </Card>
