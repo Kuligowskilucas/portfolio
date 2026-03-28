@@ -6,8 +6,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Lucas - Desenvolvedor Front-End",
-  description: "Portfolio pessoal de Lucas, desenvolvedor front-end especializado em React, Next.js e TypeScript.",
+  title: "Lucas Kuligowski - Desenvolvedor Web",
+  description: "Portfolio de Lucas Kuligowski — desenvolvedor web com experiência em Next.js, React, TypeScript, Laravel e SEO. Performance, APIs robustas e resultados mensuráveis.",
 }
 
 export default function RootLayout({
