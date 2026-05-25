@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -8,29 +7,6 @@ import { Github, Linkedin, Mail, Code2, Database, Settings, ChevronDown, Server,
 import { ProjectSection } from "@/components/ui/ProjectSection"
 
 export default function Portfolio() {
-  const [, setIsVisible] = useState({})
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible((prev) => ({
-              ...prev,
-              [entry.target.id]: true,
-            }))
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
-
-    const sections = document.querySelectorAll("section[id]")
-    sections.forEach((section) => observer.observe(section))
-
-    return () => observer.disconnect()
-  }, [])
-
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({
       behavior: "smooth",
@@ -89,9 +65,9 @@ export default function Portfolio() {
     {
       title: "AutoBusiness CMS",
       description:
-        "Contribuições técnicas no CMS da Inffus, incluindo gerador de anúncios com IA (ChatGPT) e sistema de rastreamento de UTMs com validação automática — redução de marcações inválidas de 30% para menos de 2%.",
+        "Contribuições técnicas no CMS da Inffus, incluindo módulo de geração de anúncios com IA (integração OpenAI/ChatGPT) e módulo reutilizável de rastreamento de UTMs com validação automática, distribuído via registry privado.",
       tech: ["JavaScript", "Node.js", "OpenAI API", "NPM"],
-      link: "https://app.autobusiness.com.br/",
+      link: "",
       image: "/images/crm.png",
       partner: "Inffus",
       role: "Desenvolvimento de funcionalidades e pacote NPM",
@@ -155,7 +131,7 @@ export default function Portfolio() {
     {
       company: "Tuxon Soluções Web",
       role: "Desenvolvedor Web",
-      period: "Setembro 2025 – Abril 2026",
+      period: "Setembro 2025 – Março 2026",
       highlights: [
         "Conduziu migração do sistema Horsch de Laravel 9 para 12, resolvendo breaking changes em autenticação, Eloquent e middleware.",
         "Desenvolveu do zero o módulo de assentamentos do sistema de chamados interno — modelagem de banco, CRUD completo, vínculo com chamados, histórico de alterações e interface administrativa (Laravel/Filament).",
@@ -167,10 +143,10 @@ export default function Portfolio() {
       company: "Inffus",
       role: "Desenvolvedor Web",
       period: "Dezembro 2024 – Agosto 2025",
-      description: "10 sites institucionais — 80 mil visitas/mês",
+      description: "Cerca de 10 sites institucionais sob carteira",
       highlights: [
-        "Criou gerenciador de UTMs com validação automática, derrubando marcações inválidas de 30% para menos de 2%.",
-        "Migrou propriedades de marketing para Next.js (SSR/SSG) com otimização de imagens, reduzindo TTFB em 35% e INP para 180 ms.",
+        "Desenvolveu módulo reutilizável de rastreamento de UTMs com validação automática, distribuído via registry privado e consumido por aproximadamente dez sites da carteira.",
+        "Migrou propriedades de marketing para Next.js (SSR/SSG) com otimização de imagens via CDN e redução de payload JS.",
         "Evoluiu APIs internas (TypeScript/Laravel), melhorando consistência de contratos e reutilização entre projetos.",
       ],
     },
@@ -178,16 +154,16 @@ export default function Portfolio() {
       company: "Sites 10",
       role: "Desenvolvedor Web",
       period: "Março 2024 – Dezembro 2024",
-      description: "25 sites institucionais — 150 mil visitas/mês",
+      description: "Sites institucionais para a carteira da agência",
       highlights: [
-        "Entregou sites responsivos com SEO sólido (schema, sitemaps, Core Web Vitals), gerando +40% de tráfego orgânico.",
-        "Reduziu tempo de carregamento em até 50% com lazy-loading, otimização de imagens/CDN e redução de payload.",
+        "Entregou sites institucionais responsivos com SEO técnico aplicado (schema.org, sitemaps, Core Web Vitals), atingindo PageSpeed acima de 90 e Práticas Recomendadas em 100.",
+        "Refatorou sites legados com lazy-loading, otimização de imagens via CDN e redução de payload JS.",
       ],
     },
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white font-['Montserrat']">
+    <div className="min-h-screen bg-black text-white">
       <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
@@ -199,7 +175,7 @@ export default function Portfolio() {
                   onClick={() => scrollToSection(item)}
                   className="text-gray-300 hover:text-purple-400 transition-colors capitalize"
                 >
-                  {{"sobre": "Sobre", "tecnologias": "Tecnologias", "projetos": "Projetos", "experiencia": "Experiência", "contato": "Contato"}[item]}
+                  {{ sobre: "Sobre", tecnologias: "Tecnologias", projetos: "Projetos", experiencia: "Experiência", contato: "Contato" }[item]}
                 </button>
               ))}
             </div>
@@ -245,10 +221,11 @@ export default function Portfolio() {
             <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Sobre Mim</h2>
             <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
               <p>
-                Sou desenvolvedor web com 2 anos de experiência construindo aplicações com
+                Sou desenvolvedor web com 2 anos de experiência construindo aplicações em
                 <span className="text-purple-400"> Next.js, React, TypeScript e Laravel</span>. Meu foco é
-                entregar interfaces rápidas, APIs consistentes e fundações sólidas de SEO que geram resultado
-                mensurável — como +40% de tráfego orgânico e redução de 50% no tempo de carregamento.
+                entregar interfaces rápidas, APIs consistentes e SEO técnico sólido — sites com
+                PageSpeed acima de 90 e Práticas Recomendadas em 100, e backends Laravel cobertos
+                por testes automatizados.
               </p>
               <p>
                 Já trabalhei em três empresas, passando por dezenas de sites institucionais, migrações de sistemas

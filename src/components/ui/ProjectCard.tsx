@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 interface ProjectCardProps {
   title: string
@@ -20,11 +21,13 @@ interface ProjectCardProps {
 export function ProjectCard({ title, description, tech, link, image, partner, role }: ProjectCardProps) {
   return (
     <Card className="bg-gray-800/50 border border-gray-700 hover:border-purple-400 transition-all duration-300 overflow-hidden">
-      <div className="w-full aspect-[9/4] sm:aspect-video bg-gray-700 flex items-center justify-center">
-        <img
+      <div className="relative w-full aspect-[9/4] sm:aspect-video bg-gray-700">
+        <Image
           src={image || "/placeholder.jpg"}
           alt={`Imagem do projeto ${title}`}
-          className="w-full h-full object-contain sm:object-cover"
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-contain sm:object-cover"
         />
       </div>
 
@@ -44,7 +47,7 @@ export function ProjectCard({ title, description, tech, link, image, partner, ro
         </div>
         <div>
           {link ? (
-            <Link href={link} target="_blank">
+            <Link href={link} target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white rounded-full mt-2">
                 <ExternalLink className="w-4 h-4 mr-2" />
                 Ver Online
