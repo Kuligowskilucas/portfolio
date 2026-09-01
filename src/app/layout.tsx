@@ -1,18 +1,24 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
+import { Archivo, Source_Serif_4 } from "next/font/google"
 import "./globals.css"
+import { portfolio } from "@/data/portfolio"
 
-const montserrat = Montserrat({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
+  variable: "--font-source-serif",
+})
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-archivo",
 })
 
 export const metadata: Metadata = {
-  title: "Lucas Kuligowski - Desenvolvedor Web",
-  description:
-    "Portfolio de Lucas Kuligowski — desenvolvedor web com experiência em Next.js, React, TypeScript, Laravel e SEO. Performance, APIs robustas e resultados mensuráveis.",
+  title: portfolio.meta.title,
+  description: portfolio.meta.description,
 }
 
 export default function RootLayout({
@@ -21,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR">
-      <body className={montserrat.className}>{children}</body>
+    <html lang="pt-BR" className={`${sourceSerif.variable} ${archivo.variable}`}>
+      <body className="bg-paper font-body text-ink antialiased">{children}</body>
     </html>
   )
 }

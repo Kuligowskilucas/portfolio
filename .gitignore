@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+
+# contexto de trabalho, não vai pro repo
+CLAUDE.md
+CONTEUDO-PORTFOLIO.md

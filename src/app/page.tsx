@@ -1,368 +1,237 @@
-"use client"
-
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Github, Linkedin, Mail, Code2, Database, Settings, ChevronDown, Server, BarChart3 } from "lucide-react"
+import type React from "react"
 import { ProjectSection } from "@/components/ui/ProjectSection"
+import { portfolio } from "@/data/portfolio"
+
+/** Link em azul-petróleo, sublinhado discreto que firma no hover e no foco. */
+const linkClass =
+  "text-prussian underline decoration-rule underline-offset-4 transition-colors duration-150 hover:decoration-prussian"
+
+const buttonClass =
+  "inline-block rounded-[2px] bg-prussian px-6 py-3 text-[0.9375rem] font-medium text-paper transition-colors duration-150 hover:bg-ink"
+
+/**
+ * Categoria que o CONTEUDO-PORTFOLIO.md manda não ter o mesmo peso visual
+ * que Back-end. Aqui isso vira estrutura, não opinião: ela sai do corpo da
+ * lista e entra num bloco menor no fim.
+ */
+const SECONDARY_TECH_CATEGORY = "seo-ferramentas"
+
+/** Bloco padrão da página: nome da seção na margem, conteúdo à direita. */
+function Section({
+  id,
+  heading,
+  children,
+}: {
+  id: string
+  heading: string
+  children: React.ReactNode
+}) {
+  return (
+    <section id={id} className="scroll-mt-32 md:scroll-mt-24">
+      <div className="mx-auto w-full max-w-[1080px] px-6">
+        <div className="border-t border-rule py-16 md:grid md:grid-cols-[200px_minmax(0,1fr)] md:gap-x-12 md:py-24">
+          <h2 className="text-[0.8125rem] font-medium tracking-[0.02em] text-graphite md:sticky md:top-24 md:self-start">
+            {heading}
+          </h2>
+          <div className="mt-8 md:mt-0">{children}</div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function Portfolio() {
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({
-      behavior: "smooth",
-    })
-  }
+  const { brand, nav, hero, about, tech, projects, experience, contact } = portfolio
 
-  const techStacks = {
-    "Front-end": ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS", "JavaScript", "SSR/SSG"],
-    "Back-end": ["Laravel", "PHP", "Filament", "Orchid", "REST API", "SOAP", "Redis", "JWT/OAuth2"],
-    "Bancos de Dados": ["MySQL", "SQLite"],
-    "SEO & Analytics": ["GA4", "Google Search Console", "Lighthouse", "Screaming Frog", "schema.org"],
-    "DevOps & Testes": ["Docker", "GitHub Actions", "Jest/RTL", "PHPUnit/Pest", "Playwright"],
-    "Ferramentas": ["Git", "GitHub", "npm", "Vercel", "Postman/Insomnia"],
-  }
-
-  const techIcons: Record<string, React.ReactNode> = {
-    "Front-end": <Code2 className="w-6 h-6 text-purple-400 mr-2" />,
-    "Back-end": <Server className="w-6 h-6 text-purple-400 mr-2" />,
-    "Bancos de Dados": <Database className="w-6 h-6 text-purple-400 mr-2" />,
-    "SEO & Analytics": <BarChart3 className="w-6 h-6 text-purple-400 mr-2" />,
-    "DevOps & Testes": <Settings className="w-6 h-6 text-purple-400 mr-2" />,
-    "Ferramentas": <Settings className="w-6 h-6 text-purple-400 mr-2" />,
-  }
-
-  const technicalProjects = [
-    {
-      title: "Migração Laravel 9 → 12 (Horsch)",
-      description:
-        "Migração completa do sistema Horsch de Laravel 9 para 12 na Tuxon Soluções Web. Refatoração de breaking changes em autenticação, Eloquent e middleware, atualização de dependências e resolução de incompatibilidades.",
-      tech: ["Laravel", "PHP", "Docker", "MySQL"],
-      link: "",
-      image: "/images/horsch.png",
-      partner: "Tuxon Soluções Web",
-      role: "Migração e refatoração completa",
-    },
-    {
-      title: "Módulo de Assentamentos — Sistema de Chamados",
-      description:
-        "Desenvolvimento completo do módulo de assentamentos do sistema de chamados interno da Tuxon. Modelagem de banco de dados, CRUD completo, vínculo com chamados, histórico de alterações e interface administrativa.",
-      tech: ["Laravel", "Filament", "MySQL", "PHP"],
-      link: "",
-      image: "/images/chamados.png",
-      partner: "Tuxon Soluções Web",
-      role: "Desenvolvimento completo do módulo",
-    },
-    {
-      title: "Painéis Administrativos (Filament & Orchid)",
-      description:
-        "Desenvolvimento de painéis administrativos na Tuxon para gestão de clientes, com fluxos CRUD customizados, relatórios internos e containerização dos ambientes com Docker.",
-      tech: ["Laravel", "Filament", "Orchid", "Docker"],
-      link: "",
-      image: "/images/painel.png",
-      partner: "Tuxon Soluções Web",
-      role: "Desenvolvimento e manutenção",
-    },
-    {
-      title: "AutoBusiness CMS",
-      description:
-        "Contribuições técnicas no CMS da Inffus, incluindo módulo de geração de anúncios com IA (integração OpenAI/ChatGPT) e módulo reutilizável de rastreamento de UTMs com validação automática, distribuído via registry privado.",
-      tech: ["JavaScript", "Node.js", "OpenAI API", "NPM"],
-      link: "",
-      image: "/images/crm.png",
-      partner: "Inffus",
-      role: "Desenvolvimento de funcionalidades e pacote NPM",
-    },
-    {
-      title: "Porto Camargo",
-      description:
-        "Integração da API do sistema imobiliário CVCRM ao site institucional da Porto Camargo, permitindo exibição dinâmica e automatizada de empreendimentos. Projeto realizado na Inffus.",
-      tech: ["JavaScript", "API", "HTML", "CSS"],
-      link: "https://portocamargo.com.br/",
-      image: "/images/portocamargo.png",
-      partner: "Inffus",
-      role: "Integração da API do CVCRM",
-    },
-  ]
-
-  const visualProjects = [
-    {
-      title: "BoraSelect",
-      description:
-        "Implementação das páginas internas com foco em performance e consistência visual. Projeto institucional desenvolvido pela Inffus.",
-      tech: ["Next.js", "Tailwind CSS"],
-      link: "https://boraselect.com.br/",
-      image: "/images/boraselect.png",
-      partner: "Inffus",
-      role: "Programação das páginas internas",
-    },
-    {
-      title: "TQ Tec Treinamentos",
-      description:
-        "Site institucional moderno e responsivo, com foco em usabilidade, SEO e divulgação de cursos EAD e in-company. Programado na agência Sites10.",
-      tech: ["PHP", "JavaScript", "HTML", "CSS"],
-      link: "https://www.tqtectreinamentos.com.br/",
-      image: "/images/tqtectreinamentos.png",
-      partner: "Sites10",
-      role: "Programação completa",
-    },
-    {
-      title: "DEX Engenharia",
-      description:
-        "Site institucional voltado à engenharia industrial, com foco técnico, performance e clareza. Programado em parceria com a agência Sites10.",
-      tech: ["PHP", "JavaScript", "HTML", "CSS"],
-      link: "https://www.gdex.com.br/",
-      image: "/images/dex.png",
-      partner: "Sites10",
-      role: "Programação completa",
-    },
-    {
-      title: "Vestilo Uniformes",
-      description:
-        "Desenvolvimento das páginas internas do site da Vestilo com foco em responsividade, clareza de estrutura e padronização visual. Projeto da Inffus.",
-      tech: ["Next.js", "Tailwind CSS"],
-      link: "https://site.vestilo.com.br/",
-      image: "/images/vestilo.png",
-      partner: "Inffus",
-      role: "Programação das páginas internas",
-    },
-  ]
-
-  const experiences = [
-    {
-      company: "Tuxon Soluções Web",
-      role: "Desenvolvedor Web",
-      period: "Setembro 2025 – Março 2026",
-      highlights: [
-        "Conduziu migração do sistema Horsch de Laravel 9 para 12, resolvendo breaking changes em autenticação, Eloquent e middleware.",
-        "Desenvolveu do zero o módulo de assentamentos do sistema de chamados interno — modelagem de banco, CRUD completo, vínculo com chamados, histórico de alterações e interface administrativa (Laravel/Filament).",
-        "Construiu painéis administrativos com Filament e Orchid — gestão de clientes, fluxos CRUD customizados e relatórios internos.",
-        "Padronizou ambientes de desenvolvimento e deploy com Docker.",
-      ],
-    },
-    {
-      company: "Inffus",
-      role: "Desenvolvedor Web",
-      period: "Dezembro 2024 – Agosto 2025",
-      description: "Cerca de 10 sites institucionais sob carteira",
-      highlights: [
-        "Desenvolveu módulo reutilizável de rastreamento de UTMs com validação automática, distribuído via registry privado e consumido por aproximadamente dez sites da carteira.",
-        "Migrou propriedades de marketing para Next.js (SSR/SSG) com otimização de imagens via CDN e redução de payload JS.",
-        "Evoluiu APIs internas (TypeScript/Laravel), melhorando consistência de contratos e reutilização entre projetos.",
-      ],
-    },
-    {
-      company: "Sites 10",
-      role: "Desenvolvedor Web",
-      period: "Março 2024 – Dezembro 2024",
-      description: "Sites institucionais para a carteira da agência",
-      highlights: [
-        "Entregou sites institucionais responsivos com SEO técnico aplicado (schema.org, sitemaps, Core Web Vitals), atingindo PageSpeed acima de 90 e Práticas Recomendadas em 100.",
-        "Refatorou sites legados com lazy-loading, otimização de imagens via CDN e redução de payload JS.",
-      ],
-    },
-  ]
+  const ledger = projects.groups.find((group) => group.id === "sistemas-em-producao")
+  const techPrimary = tech.categories.filter((category) => category.id !== SECONDARY_TECH_CATEGORY)
+  const techSecondary = tech.categories.filter((category) => category.id === SECONDARY_TECH_CATEGORY)
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-xl font-bold text-purple-400">Lucas</div>
-            <div className="hidden md:flex space-x-8">
-              {["sobre", "tecnologias", "projetos", "experiencia", "contato"].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="text-gray-300 hover:text-purple-400 transition-colors capitalize"
-                >
-                  {{ sobre: "Sobre", tecnologias: "Tecnologias", projetos: "Projetos", experiencia: "Experiência", contato: "Contato" }[item]}
-                </button>
+    <div className="min-h-screen bg-paper text-ink">
+      <header className="sticky top-0 z-50 border-b border-rule bg-paper">
+        <div className="mx-auto w-full max-w-[1080px] md:flex md:items-baseline md:justify-between md:gap-8 md:px-6">
+          <div className="px-6 pt-4 pb-3 md:px-0 md:py-4">
+            <a href="#hero" className="font-display text-[1.0625rem] font-semibold tracking-[-0.01em] text-ink">
+              {brand}
+            </a>
+          </div>
+          <nav className="no-scrollbar overflow-x-auto border-t border-rule md:border-t-0">
+            <ul className="flex w-max gap-6 px-6 py-3 text-[0.8125rem] font-medium tracking-[0.02em] md:w-auto md:px-0 md:py-4">
+              {nav.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="whitespace-nowrap text-graphite transition-colors duration-150 hover:text-prussian"
+                  >
+                    {item.label}
+                  </a>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
         </div>
-      </nav>
+      </header>
 
-      <section id="hero" className="min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="transition-all duration-1000">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Olá, eu sou o <span className="text-purple-400">Lucas</span>
-            </h1>
-            <h2 className="text-2xl md:text-3xl font-light text-gray-300 mb-8">Desenvolvedor Web</h2>
-            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-              Interfaces performáticas, APIs robustas e SEO que gera resultado. Next.js, Laravel e TypeScript.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => scrollToSection("projetos")}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full text-lg transition-all duration-300 hover:scale-105"
-              >
-                Ver Projetos
-              </Button>
-              <Button
-                onClick={() => scrollToSection("contato")}
-                variant="outline"
-                className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black px-8 py-3 rounded-full text-lg transition-all duration-300 hover:scale-105"
-              >
-                Entrar em Contato
-              </Button>
-            </div>
-          </div>
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-6 h-6 text-purple-400" />
-          </div>
-        </div>
-      </section>
+      <section id="hero" className="scroll-mt-32 md:scroll-mt-24">
+        <div className="mx-auto w-full max-w-[1080px] px-6 pt-16 pb-20 md:pt-28 md:pb-28">
+          <h1 className="font-display text-[clamp(2.75rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.02em]">
+            {hero.title}
+          </h1>
+          <p className="mt-6 max-w-[46ch] text-[1.25rem] leading-[1.5] text-graphite">{hero.subtitle}</p>
 
-      <section id="sobre" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="transition-all duration-1000">
-            <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Sobre Mim</h2>
-            <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
-              <p>
-                Sou desenvolvedor web com 2 anos de experiência construindo aplicações em
-                <span className="text-purple-400"> Next.js, React, TypeScript e Laravel</span>. Meu foco é
-                entregar interfaces rápidas, APIs consistentes e SEO técnico sólido — sites com
-                PageSpeed acima de 90 e Práticas Recomendadas em 100, e backends Laravel cobertos
-                por testes automatizados.
-              </p>
-              <p>
-                Já trabalhei em três empresas, passando por dezenas de sites institucionais, migrações de sistemas
-                legados (Laravel 9 → 12), painéis administrativos com
-                <span className="text-purple-400"> Filament e Orchid</span>, módulos completos de sistemas internos,
-                integrações de APIs externas e containerização com <span className="text-purple-400">Docker</span>.
-                Transito confortavelmente entre front e back-end.
-              </p>
-              <p>
-                Atualmente cursando Análise e Desenvolvimento de Sistemas na PUC Paraná, com formação técnica
-                em Informática pelo IFPR. Sempre buscando desafios que me forcem a crescer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="tecnologias" className="py-20 px-6 bg-gray-900/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="transition-all duration-1000">
-            <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Tecnologias</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {Object.entries(techStacks).map(([category, techs]) => (
-                <Card
-                  key={category}
-                  className="bg-gray-800/50 border-gray-700 hover:border-purple-400 transition-all duration-300"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      {techIcons[category]}
-                      <h3 className="text-xl font-semibold text-white">{category}</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {techs.map((tech) => (
-                        <Badge
-                          key={tech}
-                          variant="secondary"
-                          className="bg-purple-600/20 text-purple-300 hover:bg-purple-600/30 transition-colors"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projetos" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="transition-all duration-1000">
-            <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Projetos</h2>
-            <ProjectSection title="Funcionalidades Técnicas & Integrações" projects={technicalProjects} />
-            <ProjectSection title="Sites Desenvolvidos" projects={visualProjects} />
-          </div>
-        </div>
-      </section>
-
-      <section id="experiencia" className="py-20 px-6 bg-gray-900/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="transition-all duration-1000">
-            <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Experiência</h2>
-            <div className="space-y-8">
-              {experiences.map((exp) => (
-                <Card key={exp.company} className="bg-gray-800/50 border-gray-700">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                      <div className="w-full">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
-                          <h3 className="text-xl font-semibold text-white">
-                            {exp.company}
-                          </h3>
-                          <span className="text-sm text-purple-400 font-medium">{exp.period}</span>
-                        </div>
-                        <p className="text-gray-400 text-sm mb-3">
-                          {exp.role}
-                          {exp.description && <span> • {exp.description}</span>}
-                        </p>
-                        <ul className="space-y-2">
-                          {exp.highlights.map((highlight, i) => (
-                            <li key={i} className="text-gray-300 leading-relaxed flex items-start">
-                              <span className="text-purple-400 mr-2 mt-1 flex-shrink-0">▸</span>
-                              <span>{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
+          {ledger && (
+            <section aria-labelledby="ledger-heading" className="mt-14">
+              <h2 id="ledger-heading" className="sr-only">
+                {ledger.title}
+              </h2>
+              <ul className="border-b border-rule">
+                {ledger.projects.map((project, index) => {
+                  const [name, descriptor] = project.title.split(" — ")
+                  return (
+                    <li
+                      key={project.title}
+                      className="ledger-row grid gap-x-8 gap-y-2 border-t border-rule py-5 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1.4fr)] md:items-baseline"
+                      style={{ animationDelay: `${index * 40}ms` }}
+                    >
+                      <div>
+                        <span className="font-display text-[1.125rem] font-semibold leading-snug text-ink">
+                          {name}
+                        </span>
+                        {descriptor && (
+                          <span className="mt-1 block text-[0.9375rem] leading-snug text-graphite">{descriptor}</span>
+                        )}
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                      <span className="text-[0.8125rem] font-medium leading-snug text-graphite">{project.context}</span>
+                      <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[0.8125rem] font-medium">
+                        {project.links?.map((link, linkIndex) => (
+                          <span key={link.href} className="inline-flex items-baseline gap-x-2">
+                            {linkIndex > 0 && (
+                              <span aria-hidden="true" className="text-rule">
+                                ·
+                              </span>
+                            )}
+                            <a href={link.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                              {link.label}
+                            </a>
+                          </span>
+                        ))}
+                      </span>
+                    </li>
+                  )
+                })}
+              </ul>
+            </section>
+          )}
+
+          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 text-[0.9375rem] font-medium">
+            <a href={`#${hero.primaryCta.targetId}`} className={buttonClass}>
+              {hero.primaryCta.label}
+            </a>
+            <a href={hero.secondaryCta.href} download className={linkClass}>
+              {hero.secondaryCta.label}
+            </a>
           </div>
         </div>
       </section>
 
-      <section id="contato" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="transition-all duration-1000">
-            <h2 className="text-4xl font-bold text-center mb-16 text-purple-400">Contato</h2>
-            <div className="text-center w-full flex items-center flex-col">
-              <p className="text-xl text-gray-300 mb-12">Vamos trabalhar juntos? Entre em contato comigo!</p>
-              <div className="flex md:flex-row flex-col justify-center space-x-8 mb-12">
-                <a
-                  href="https://github.com/Kuligowskilucas"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors group"
-                >
-                  <Github className="w-8 h-8 group-hover:scale-110 transition-transform" />
-                  <span className="text-lg">GitHub</span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/lucas-kuligowski-504017260/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors group"
-                >
-                  <Linkedin className="w-8 h-8 group-hover:scale-110 transition-transform" />
-                  <span className="text-lg">LinkedIn</span>
-                </a>
-                <a
-                  href="mailto:lucaskuligowski@gmail.com"
-                  className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors group"
-                >
-                  <Mail className="w-8 h-8 group-hover:scale-110 transition-transform" />
-                  <span className="text-lg">Email</span>
-                </a>
-              </div>
-            </div>
-          </div>
+      <Section id="sobre" heading={about.heading}>
+        <div className="max-w-[68ch]">
+          {about.paragraphs.map((paragraph, index) =>
+            index === 0 ? (
+              <p key={paragraph} className="text-[1.1875rem] leading-[1.6] text-ink">
+                {paragraph}
+              </p>
+            ) : (
+              <p key={paragraph} className="mt-6 text-[1.0625rem] leading-[1.65] text-graphite">
+                {paragraph}
+              </p>
+            ),
+          )}
         </div>
-      </section>
+      </Section>
+
+      <Section id="tecnologias" heading={tech.heading}>
+        <dl className="max-w-[68ch] border-t border-rule">
+          {techPrimary.map((category) => (
+            <div
+              key={category.id}
+              className="grid gap-x-8 gap-y-1 border-b border-rule py-5 md:grid-cols-[170px_minmax(0,1fr)]"
+            >
+              <dt className="text-[0.9375rem] font-medium text-ink">{category.title}</dt>
+              <dd className="text-[0.9375rem] leading-relaxed text-graphite">{category.items.join(" · ")}</dd>
+            </div>
+          ))}
+        </dl>
+
+        {techSecondary.map((category) => (
+          <div key={category.id} className="mt-8 max-w-[68ch]">
+            <h3 className="text-[0.8125rem] font-medium text-graphite">{category.title}</h3>
+            <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-graphite">{category.items.join(" · ")}</p>
+          </div>
+        ))}
+      </Section>
+
+      <Section id="projetos" heading={projects.heading}>
+        {projects.groups.map((group) => (
+          <ProjectSection key={group.id} title={group.title} projects={group.projects} />
+        ))}
+      </Section>
+
+      <Section id="experiencia" heading={experience.heading}>
+        <div className="border-t border-rule">
+          {experience.items.map((exp) => (
+            <article
+              key={exp.company}
+              className="border-b border-rule py-8 md:grid md:grid-cols-[150px_minmax(0,1fr)] md:gap-x-8"
+            >
+              <p className="text-[0.8125rem] font-medium tabular-nums text-graphite">{exp.period}</p>
+              <div className="mt-3 md:mt-0">
+                <h3 className="font-display text-[1.25rem] font-semibold leading-snug text-ink">{exp.company}</h3>
+                <p className="mt-1 text-[0.8125rem] font-medium text-graphite">{exp.role}</p>
+                <ul className="mt-4 max-w-[68ch] space-y-2.5">
+                  {exp.highlights.map((highlight) => (
+                    <li key={highlight} className="relative pl-5 text-[1rem] leading-[1.6] text-graphite">
+                      <span aria-hidden="true" className="absolute left-0 top-[0.7em] h-px w-2.5 bg-rule" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="contato" heading={contact.heading}>
+        <div className="max-w-[68ch]">
+          {contact.lines.map((line, index) => (
+            <p key={line} className={`text-[1.1875rem] leading-[1.6] text-ink ${index > 0 ? "mt-1" : ""}`}>
+              {line}
+            </p>
+          ))}
+
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem] font-medium">
+            {contact.links.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={link.href}
+                  {...(link.id === "email" ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                  className={linkClass}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-10">
+            <a href={contact.resume.href} download className={buttonClass}>
+              {contact.resume.label}
+            </a>
+          </p>
+        </div>
+      </Section>
     </div>
   )
 }

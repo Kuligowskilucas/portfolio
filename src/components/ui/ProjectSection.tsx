@@ -1,32 +1,18 @@
 // components/ProjectSection.tsx
-"use client"
-
 import { ProjectCard } from "./ProjectCard"
+import type { ProjectGroup } from "@/data/portfolio"
 
-interface ProjectData {
-  title: string
-  description: string
-  tech: string[]
-  link: string
-  image: string
-  partner?: string
-  role?: string
-}
-
-interface ProjectSectionProps {
-  title: string
-  projects: ProjectData[]
-}
-
-export function ProjectSection({ title, projects }: ProjectSectionProps) {
+export function ProjectSection({ title, projects }: Omit<ProjectGroup, "id">) {
   return (
-    <div className="mb-20">
-      <h3 className="text-2xl font-semibold text-white mb-8">{title}</h3>
-      <div className="flex flex-col gap-12">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} {...project} />
+    <section className="mt-16 first:mt-0">
+      <h3 className="font-display text-[clamp(1.5rem,2.5vw,1.875rem)] font-semibold tracking-[-0.015em] text-ink">
+        {title}
+      </h3>
+      <div className="mt-8">
+        {projects.map((project) => (
+          <ProjectCard key={project.title} {...project} />
         ))}
       </div>
-    </div>
+    </section>
   )
 }

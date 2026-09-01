@@ -1,66 +1,52 @@
 // components/ProjectCard.tsx
-"use client"
-
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Lock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import Image from "next/image"
+import type { Project } from "@/data/portfolio"
 
-interface ProjectCardProps {
-  title: string
-  description: string
-  tech: string[]
-  link: string
-  image: string
-  partner?: string
-  role?: string
-}
+const linkClass =
+  "text-prussian underline decoration-rule underline-offset-4 transition-colors duration-150 hover:decoration-prussian"
 
-export function ProjectCard({ title, description, tech, link, image, partner, role }: ProjectCardProps) {
+export function ProjectCard({ title, context, description, tech, image, links, restrictedLabel }: Project) {
   return (
-    <Card className="bg-gray-800/50 border border-gray-700 hover:border-purple-400 transition-all duration-300 overflow-hidden">
-      <div className="relative w-full aspect-[9/4] sm:aspect-video bg-gray-700">
-        <Image
-          src={image || "/placeholder.jpg"}
-          alt={`Imagem do projeto ${title}`}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-contain sm:object-cover"
-        />
-      </div>
+    <article className="border-t border-rule py-10 first:border-t-0 first:pt-0">
+      <h4 className="font-display text-[clamp(1.25rem,2vw,1.5rem)] font-semibold leading-snug tracking-[-0.015em] text-ink">
+        {title}
+      </h4>
+      <p className="mt-2 text-[0.8125rem] font-medium text-graphite">{context}</p>
 
-      <CardContent className="p-6 flex flex-col gap-4">
-        <div>
-          <h3 className="text-2xl font-bold text-white">{title}</h3>
-          {partner && <p className="text-sm text-purple-400 italic mt-1">Parceria com {partner}</p>}
-          {role && <p className="text-sm text-gray-400">Atuação: {role}</p>}
+      <p className="mt-5 max-w-[68ch] text-[1.0625rem] leading-[1.65] text-graphite">{description}</p>
+
+      {image && (
+        <div className="relative mt-7 aspect-[16/10] w-full max-w-[700px] overflow-hidden rounded-[2px] bg-shelf">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, 700px"
+            className="object-cover object-top"
+          />
         </div>
-        <p className="text-gray-300 leading-relaxed">{description}</p>
-        <div className="flex flex-wrap gap-2">
-          {tech.map((t) => (
-            <Badge key={t} variant="outline" className="border-purple-400 text-purple-300">
-              {t}
-            </Badge>
-          ))}
-        </div>
-        <div>
-          {link ? (
-            <Link href={link} target="_blank" rel="noopener noreferrer">
-              <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-white rounded-full mt-2">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Ver Online
-              </Button>
-            </Link>
-          ) : (
-            <span className="inline-flex items-center text-sm text-gray-500 mt-2">
-              <Lock className="w-4 h-4 mr-2" />
-              Projeto interno — acesso restrito
+      )}
+
+      <p className="mt-6 max-w-[68ch] text-[0.8125rem] leading-relaxed text-graphite">{tech.join(" · ")}</p>
+
+      {links && links.length > 0 ? (
+        <p className="mt-4 text-[0.8125rem] font-medium">
+          {links.map((link, index) => (
+            <span key={link.href}>
+              {index > 0 && (
+                <span aria-hidden="true" className="px-2 text-rule">
+                  ·
+                </span>
+              )}
+              <a href={link.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                {link.label}
+              </a>
             </span>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+          ))}
+        </p>
+      ) : (
+        restrictedLabel && <p className="mt-4 text-[0.8125rem] italic text-graphite">{restrictedLabel}</p>
+      )}
+    </article>
   )
 }
